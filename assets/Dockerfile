@@ -1,8 +1,8 @@
-FROM public.ecr.aws/lambda/provided
+FROM public.ecr.aws/lambda/provided:al2
 
-ENV R_VERSION=4.0.3
+ENV R_VERSION=4.1.2
 
-RUN yum -y install wget
+RUN yum -y install wget libxml2-devel
 
 RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
   && wget https://cdn.rstudio.com/r/centos-7/pkgs/R-${R_VERSION}-1-1.x86_64.rpm \
@@ -12,9 +12,9 @@ RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.n
 ENV PATH="${PATH}:/opt/R/${R_VERSION}/bin/"
 
 # System requirements for R packages
-RUN yum -y install openssl-devel
+RUN yum -y install tar openssl-devel
 
-RUN Rscript -e "install.packages(c('httr', 'jsonlite', 'logger', 'logging'), repos = 'https://cloud.r-project.org/')"
+RUN Rscript -e "install.packages(c('httr', 'jsonlite', 'logger', 'logging', 'paws', 'arrow'), repos = 'https://cloud.r-project.org/')"
 
 
 COPY runtime.R functions.R bootstrap.R ${LAMBDA_TASK_ROOT}/
