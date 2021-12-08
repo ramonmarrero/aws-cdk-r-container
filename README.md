@@ -1,11 +1,10 @@
 
-# Welcome to your CDK Python project!
+# Running R scripts from AWS Lambda Functions
 
-This is a blank project for Python development with CDK.
+This repository demonstrate how to run R scripts from AWS Lambda functions using container images. 
+We will create a custom runtime for R and deploy our service using AWS CDK.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-This project is set up like a standard Python project.  The initialization
+The project is set up like a standard Python project.  The initialization
 process also creates a virtualenv within this project, stored under the `.venv`
 directory.  To create the virtualenv it assumes that there is a `python3`
 (or `python` for Windows) executable in your path with access to the `venv`
@@ -47,6 +46,15 @@ To add additional dependencies, for example other CDK libraries, just add
 them to your `setup.py` file and rerun the `pip install -r requirements.txt`
 command.
 
+
+Or it can be installed using the AWS Construct Library module for AWS Lambda by executing:
+
+```
+$ python -m pip install aws-cdk.aws-lambda
+```
+
+Find more details in this [article](https://medium.com/geekculture/effectively-running-r-scripts-from-aws-lambda-functions-6af85caa1571)
+
 ## Useful commands
 
  * `cdk ls`          list all stacks in the app
@@ -55,4 +63,4 @@ command.
  * `cdk diff`        compare deployed stack with current state
  * `cdk docs`        open CDK documentation
 
-Enjoy!
+
